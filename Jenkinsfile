@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/your-username/react-app.git'
+                git 'https://github.com/kritiray/test.git'
             }
         }
 
