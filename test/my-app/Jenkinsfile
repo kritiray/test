@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Enter the Git branch to build')
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: "${params.BRANCH_NAME}",
+                    url: 'https://github.com/kritiray/test.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                 dir('my-app') {
+                sh 'npm install'}
+            }
+        }
+
+        stage('Build React App') {
+            steps {
+                 dir('my-app') {
+                sh 'npm run build'}
+            }
+        }
+
+        //stage('Run React App') {
+          //  steps {
+            //    sh 'npm start'
+            //}
+        //}
+    }
+}
