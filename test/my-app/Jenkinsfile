@@ -2,35 +2,32 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Enter the Git branch to build')
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Enter branch')
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: "${params.BRANCH_NAME}",
-                    url: 'https://github.com/kritiray/test.git'
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: "*/${params.BRANCH_NAME}"]],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/kritiray/test.git'
+                    ]]
+                ])
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                 dir('my-app') {
-                sh 'npm install'}
+                bat 'npm install'
             }
         }
 
         stage('Build React App') {
             steps {
-                 dir('my-app') {
-                sh 'npm run build'}
+                bat 'npm run build'
             }
         }
-
-        //stage('Run React App') {
-          //  steps {
-            //    sh 'npm start'
-            //}
-        //}
     }
 }
