@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/kritiray/test.git'
-            }
-        }
 
         stage('Install') {
             steps {
@@ -26,5 +20,5 @@ pipeline {
             }
         }
     }
-}
+
 
