@@ -7,6 +7,12 @@ stages{
                 bat 'npm install'
             }
         }
+        stage('Debug Files') {
+    steps {
+        bat 'dir'
+        bat 'dir src'
+    }
+}
 
         stage('Test') {
             steps {
