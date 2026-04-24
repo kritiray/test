@@ -7,13 +7,12 @@ stages{
                 bat 'npm install'
             }
         }
-        stage('Debug Files') {
+       stage('Debug Files') {
     steps {
-        bat 'dir'
         bat 'dir src'
+        bat 'type src\\App.test.js'
     }
 }
-
         stage('Test') {
             steps {
                 bat 'npm test -- --watchAll=false'
