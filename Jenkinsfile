@@ -13,12 +13,13 @@ stages{
         bat 'type src\\App.test.js'
     }
 }
-        stage('Test') {
-            steps {
-                bat 'npm test -- --watchAll=false'
-            }
+       stage('Test') {
+    steps {
+        dir('your-app-folder') {
+            sh 'CI=true npm test'
         }
-
+    }
+}
         stage('Build') {
             steps {
                 bat 'npm run build'
