@@ -15,8 +15,8 @@ stages{
 }
        stage('Test') {
     steps {
-        dir('your-app-folder') {
-            sh 'CI=true npm test'
+        
+            bat 'CI=true npm test'
         }
     }
 }
